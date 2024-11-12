@@ -11,6 +11,7 @@ use App\Http\Controllers\{
     Api\V1\ResetPassword\ResetPasswordController,
     Api\V1\Me\MeController,
     Api\V1\MyProfile\MyProfileController,
+    Api\V1\MyPassword\MyPasswordController,
 
 }; // Controllers
 
@@ -27,6 +28,7 @@ Route::group([
 
         Route::get('me', MeController::class);
         Route::put('my-profile', MyProfileController::class);
+        Route::put('my-password', MyPasswordController::class);
 
     }); // Sanctum
 
