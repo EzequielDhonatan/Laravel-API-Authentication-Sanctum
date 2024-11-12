@@ -10,6 +10,7 @@ use App\Http\Controllers\{
     Api\V1\ForgotPassword\ForgotPasswordController,
     Api\V1\ResetPassword\ResetPasswordController,
     Api\V1\Me\MeController,
+    Api\V1\MyProfile\MyProfileController,
 
 }; // Controllers
 
@@ -25,6 +26,7 @@ Route::group([
     Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::get('me', MeController::class);
+        Route::put('my-profile', MyProfileController::class);
 
     }); // Sanctum
 
