@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Me;
+namespace App\Http\Controllers\Api\V1\MyData;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Repositories\Api\V1\Me\MeRepository;
-use App\Http\Resources\Api\V1\Me\MeResource;
+use App\Repositories\Api\V1\MyData\MyDataRepository;
+use App\Http\Resources\Api\V1\MyData\MyDataResource;
 
-class MeController extends Controller
+class MyDataController extends Controller
 {
     /**
      * Create a new controller instance.
      */
     public function __construct(
-        protected MeRepository $repository,
+        protected MyDataRepository $repository,
     ) {
         $this->repository = $repository;
     }
@@ -24,6 +24,6 @@ class MeController extends Controller
      */
     public function __invoke()
     {
-        return new MeResource($this->repository->me());
+        return new MyDataResource($this->repository->myData());
     }
 }

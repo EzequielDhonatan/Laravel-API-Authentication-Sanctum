@@ -9,7 +9,7 @@ use App\Http\Controllers\{
     Api\V1\Login\LoginController,
     Api\V1\ForgotPassword\ForgotPasswordController,
     Api\V1\ResetPassword\ResetPasswordController,
-    Api\V1\Me\MeController,
+    Api\V1\MyData\MyDataController,
     Api\V1\MyProfile\MyProfileController,
     Api\V1\MyPassword\MyPasswordController,
     Api\V1\Logout\LogoutController,
@@ -27,7 +27,7 @@ Route::group([
 
     Route::middleware(['auth:sanctum'])->group(function () {
 
-        Route::get('me', MeController::class);
+        Route::get('my-data', MyDataController::class);
         Route::put('my-profile', MyProfileController::class);
         Route::put('my-password', MyPasswordController::class);
         Route::post('logout', LogoutController::class);

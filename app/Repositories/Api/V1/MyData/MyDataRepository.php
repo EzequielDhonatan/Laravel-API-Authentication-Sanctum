@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Api\V1\Me;
+namespace App\Repositories\Api\V1\MyData;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class MeRepository
+class MyDataRepository
 {
     protected $entity;
 
@@ -15,7 +15,7 @@ class MeRepository
         $this->entity = $model;
     }
 
-    public function me()
+    public function myData()
     {
         if (! auth()->check())
             throw ValidationException::withMessages([
