@@ -3,12 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return response()->json([
-        'success'   => true,
-    ], 200);
-});
-
 use App\Http\Controllers\{
 
     Api\V1\Register\RegisterController,
@@ -28,3 +22,9 @@ Route::group([
     Route::post('reset-password', ResetPasswordController::class)->name('password.reset');
 
 }); // V1
+
+Route::get('/', function () {
+    return response()->json([
+        'success'   => true,
+    ], 200);
+});
