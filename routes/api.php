@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     Api\V1\Me\MeController,
     Api\V1\MyProfile\MyProfileController,
     Api\V1\MyPassword\MyPasswordController,
+    Api\V1\Logout\LogoutController,
 
 }; // Controllers
 
@@ -29,6 +30,7 @@ Route::group([
         Route::get('me', MeController::class);
         Route::put('my-profile', MyProfileController::class);
         Route::put('my-password', MyPasswordController::class);
+        Route::post('logout', LogoutController::class);
 
     }); // Sanctum
 
