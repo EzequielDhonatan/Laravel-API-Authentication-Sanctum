@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Repositories\Api\V1\ForgotPassword\ForgotPasswordRepository;
-use App\Http\Resources\Api\V1\ForgotPassword\ForgotPasswordResource;
 
 class ForgotPasswordController extends Controller
 {
