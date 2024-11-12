@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     Api\V1\Login\LoginController,
     Api\V1\ForgotPassword\ForgotPasswordController,
     Api\V1\ResetPassword\ResetPasswordController,
+    Api\V1\Me\MeController,
 
 }; // Controllers
 
@@ -20,6 +21,12 @@ Route::group([
     Route::post('login', LoginController::class);
     Route::post('forgot-password', ForgotPasswordController::class);
     Route::post('reset-password', ResetPasswordController::class)->name('password.reset');
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+
+        Route::get('me', MeController::class);
+
+    }); // Sanctum
 
 }); // V1
 
