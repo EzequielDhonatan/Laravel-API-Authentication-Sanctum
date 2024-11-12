@@ -1,0 +1,68 @@
+services:
+
+    # Image
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis
+        networks:
+            - laravel_api_authentication_sanctum
+
+    # NGINX
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "8091:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks:
+            - laravel_api_authentication_sanctum
+
+    # DB (MySQL)
+    db:
+        image: mysql:8.0
+        platform: linux/x86_64
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+            MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
+            MYSQL_USER: ${DB_USERNAME:-username}
+        volumes:
+            - ./.docker/mysql/dbdata:/var/lib/mysql
+        ports:
+            - "3443:3306"
+        networks:
+            - laravel_api_authentication_sanctum
+
+    # PHPMyAdmin
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        platform: linux/x86_64
+        restart: unless-stopped
+        ports:
+            - "8580:80"
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+        networks:
+            - laravel_api_authentication_sanctum
+
+    # Redis
+    redis:
+        image: redis:latest
+        networks:
+            - laravel_api_authentication_sanctum
+
+networks:
+    laravel_api_authentication_sanctum:
+        driver: bridge
